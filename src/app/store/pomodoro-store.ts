@@ -17,7 +17,7 @@ type PomodoroState = {
 };
 
 const initialState: PomodoroState = {
-  timeLeft: 1 * 60,
+  timeLeft: 25 * 60,
   isRunning: false,
   phase: 'work',
 };
@@ -67,5 +67,5 @@ export const PomodoroStore = signalStore(
         timeLeft: 25 * 60,
       }));
     },
-  }))
+  })),
 );
