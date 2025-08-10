@@ -24,7 +24,7 @@ export class AppComponent {
   sub = new Subscription();
   @ViewChild(AudioPlayerComponent) audioElement!: AudioPlayerComponent;
 
-  source = interval(100).pipe(takeWhile(() => this.store.isRunning()));
+  source = interval(1000).pipe(takeWhile(() => this.store.isRunning()));
 
   constructor() {
     effect(() => {
