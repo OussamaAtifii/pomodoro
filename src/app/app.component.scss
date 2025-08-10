@@ -1,0 +1,26 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+main {
+  @include flex-center;
+  height: 100%;
+
+  .pomodoro-container {
+    @include flex-center(column, $gap-small);
+    width: 400px;
+    font-size: $font-size-large;
+    padding: 44px;
+    background-color: $color-bg;
+    border: 1px solid $color-border;
+    border-radius: $radius;
+    box-shadow: $shadow;
+
+    .phase-badge {
+      @include flex-center(row, $gap-medium);
+      font-size: 12px;
+      background: #eeeeee;
+      padding: 6px 12px;
+      border-radius: $radius;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<div class="pomodoro-controls">
+  @if (store.isRunning()) {
+    <button class="start" (click)="store.stopTimer()">
+      <app-pause-icon svgClass="medium" />
+      Pause
+    </button>
+  } @else {
+    <button class="start" (click)="start.emit()">
+      <app-play-icon svgClass="medium" />
+      Start
+    </button>
+  }
+  <button class="reset" (click)="store.reset()">
+    <app-reset-icon svgClass="medium" />
+    Reset
+  </button>
+</div>

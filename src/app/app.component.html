@@ -1,0 +1,14 @@
+<main>
+  <div class="pomodoro-container">
+    <div class="phase-badge">
+      @if (store.phase() === "work") {
+        <app-briefcase-icon svgClass="medium" />
+        <p>Focus time!</p>
+      }
+    </div>
+    <app-timer />
+
+    <app-controls (start)="start()" (reset)="this.store.reset()" />
+    <app-audio-player />
+  </div>
+</main>

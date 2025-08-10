@@ -1,0 +1,26 @@
+@use "variables" as *;
+
+@mixin flex-center($direction: row, $gap: 0) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+@mixin button-style($bg, $color, $border: none, $hover-bg: null) {
+  @include flex-center(row, $gap-medium);
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-size: $font-size-small;
+  background-color: $bg;
+  color: $color;
+  border: $border;
+  cursor: pointer;
+
+  @if $hover-bg != null {
+    &:hover {
+      background-color: $hover-bg;
+    }
+  }
+}

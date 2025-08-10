@@ -1,0 +1,21 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+.pomodoro-controls {
+  @include flex-center(row, 8px);
+
+  button {
+    &.start {
+      @include button-style($color-primary, #fff, none, $color-primary-hover);
+    }
+
+    &.reset {
+      @include button-style(
+        #fff,
+        $color-text,
+        1px solid $color-border,
+        #f5f5f5
+      );
+    }
+  }
+}
