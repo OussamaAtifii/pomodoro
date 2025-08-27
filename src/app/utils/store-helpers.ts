@@ -1,4 +1,4 @@
-import { Phase, PomodoroState } from '@customTypes/store.types';
+import { Phase, PhaseStatus, PomodoroState } from '@customTypes/store.types';
 
 const PHASE_DURATIONS: Record<Phase, number> = {
   work: 25 * 60,
@@ -10,16 +10,20 @@ export function getPhaseTimeLeft(phase: Phase): number {
   return PHASE_DURATIONS[phase];
 }
 
-export function getNextPhase(state: PomodoroState): {
-  phase: Phase;
-  sessionsCompleted: number;
-} {
-  if (state.phase === 'work') {
-    const newPhase: Phase =
-      (state.sessionsCompleted + 1) % 4 === 0 ? 'longBreak' : 'shortBreak';
+export function getNextPhase(state: PomodoroState): PhaseStatus {
+  const { phase, sessionsCompleted } = state;
 
-    return { phase: newPhase, sessionsCompleted: state.sessionsCompleted + 1 };
+  if (phase === 'work') {
+    const newPhase = getNextBreak(sessionsCompleted);
+    return { phase: newPhase, sessionsCompleted: sessionsCompleted + 1 };
   }
 
-  return { phase: 'work', sessionsCompleted: state.sessionsCompleted };
+  return { phase: 'work', sessionsCompleted };
+}
+
+export function getNextBreak(
+  sessionsCompleted: PomodoroState['sessionsCompleted'],
+): Phase {
+  const isLongBreak = (sessionsCompleted + 1) % 4 === 0;
+  return isLongBreak ? 'longBreak' : 'shortBreak';
 }

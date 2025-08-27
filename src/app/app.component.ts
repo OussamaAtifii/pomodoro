@@ -1,4 +1,4 @@
-import { Component, effect, inject, ViewChild } from '@angular/core';
+import { Component, effect, inject, signal, ViewChild } from '@angular/core';
 import { interval, Subscription, takeWhile } from 'rxjs';
 import { AudioPlayerComponent } from '@components/audio-player/audio-player.component';
 import { PomodoroStore } from '@store/pomodoro-store';
@@ -6,6 +6,8 @@ import { TimerComponent } from '@components/timer/timer.component';
 import { ControlsComponent } from '@components/controls/controls.component';
 import { Title } from '@angular/platform-browser';
 import { PhaseBadgeComponent } from '@components/phase-badge/phase-badge.component';
+import { Phase } from '@customTypes/store.types';
+import { getNextBreak } from '@utils/store-helpers';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +26,7 @@ export class AppComponent {
   sub = new Subscription();
   @ViewChild(AudioPlayerComponent) audioElement!: AudioPlayerComponent;
 
-  source = interval(1000).pipe(takeWhile(() => this.store.isRunning()));
+  source = interval(1).pipe(takeWhile(() => this.store.isRunning()));
 
   constructor() {
     effect(() => {
@@ -51,5 +53,10 @@ export class AppComponent {
 
       this.store.decrementTimeLeft();
     });
+  }
+
+  get nextBreak(): Phase {
+    const nextBreak = getNextBreak(this.store.sessionsCompleted());
+    return nextBreak;
   }
 }
