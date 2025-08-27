@@ -1,0 +1,16 @@
+<div class="phase-badge">
+  @switch (store.phase()) {
+    @case ("work") {
+      <app-briefcase-icon svgClass="medium" />
+      <p>Focus time!</p>
+    }
+    @case ("shortBreak") {
+      <app-coffee-icon svgClass="medium" />
+      <p>Short break!</p>
+    }
+    @case ("longBreak") {
+      <app-moon-icon svgClass="medium" />
+      <p>Long break!</p>
+    }
+  }
+</div>

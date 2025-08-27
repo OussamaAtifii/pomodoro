@@ -1,0 +1,10 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.phase-badge {
+    @include flex-center(row, $gap-medium);
+    font-size: 12px;
+    background: #eeeeee;
+    padding: 6px 12px;
+    border-radius: $radius;
+  }
