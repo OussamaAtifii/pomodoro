@@ -6,3 +6,5 @@ export type PomodoroState = {
   phase: Phase;
   sessionsCompleted: number;
 };
+
+export type PhaseStatus = Pick<PomodoroState, 'phase' | 'sessionsCompleted'>;
