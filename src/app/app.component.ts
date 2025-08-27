@@ -5,7 +5,7 @@ import { PomodoroStore } from '@store/pomodoro-store';
 import { TimerComponent } from '@components/timer/timer.component';
 import { ControlsComponent } from '@components/controls/controls.component';
 import { Title } from '@angular/platform-browser';
-import { BriefcaseIconComponent } from '@icons/briefcase-icon/briefcase-icon.component';
+import { PhaseBadgeComponent } from '@components/phase-badge/phase-badge.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ import { BriefcaseIconComponent } from '@icons/briefcase-icon/briefcase-icon.com
     AudioPlayerComponent,
     ControlsComponent,
     TimerComponent,
-    BriefcaseIconComponent,
+    PhaseBadgeComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -45,7 +45,7 @@ export class AppComponent {
       const timeLeft = this.store.timeLeft();
 
       if (timeLeft === 0) {
-        this.store.reset();
+        this.store.changePhase();
         return;
       }
 

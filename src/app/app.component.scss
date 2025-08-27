@@ -7,20 +7,41 @@ main {
 
   .pomodoro-container {
     @include flex-center(column, $gap-small);
-    width: 400px;
+    width: 440px;
     font-size: $font-size-large;
     padding: 44px;
     background-color: $color-bg;
     border: 1px solid $color-border;
     border-radius: $radius;
     box-shadow: $shadow;
+  }
 
-    .phase-badge {
+  .stats-container {
+    @include flex-center(column, $gap-small);
+    width: 100%;
+    font-size: $font-size-small;
+    background-color: #eee;
+    color: #45556c;
+    border-radius: $radius;
+    justify-content: space-between;
+    padding: 12px;
+    margin-top: 12px;
+
+    .total-sessions,
+    .next-break {
       @include flex-center(row, $gap-medium);
-      font-size: 12px;
-      background: #eeeeee;
-      padding: 6px 12px;
-      border-radius: $radius;
+      justify-content: space-between;
+      width: 100%;
+
+      p:last-child {
+        font-weight: bold;
+        color: #000;
+      }
+    }
+
+    .stats-values {
+      font-weight: bold;
+      color: #000;
     }
   }
 }

@@ -1,14 +1,20 @@
 <main>
   <div class="pomodoro-container">
-    <div class="phase-badge">
-      @if (store.phase() === "work") {
-        <app-briefcase-icon svgClass="medium" />
-        <p>Focus time!</p>
-      }
-    </div>
+    <app-phase-badge />
     <app-timer />
 
     <app-controls (start)="start()" (reset)="this.store.reset()" />
     <app-audio-player />
+
+    <div class="stats-container">
+      <div class="total-sessions">
+        <p>Total sessions:</p>
+        <p>{{ store.sessionsCompleted() }}</p>
+      </div>
+      <div class="next-break">
+        <p>Next Break:</p>
+        <p>Short break</p>
+      </div>
+    </div>
   </div>
 </main>
