@@ -4,9 +4,9 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 @Component({
   selector: 'app-briefcase-icon',
   imports: [NgClass],
-  templateUrl: './briefcase-icon.component.html',
+  templateUrl: './todolist-icon.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BriefcaseIconComponent {
+export class TodoListIconComponent {
   svgClass = input<string>('');
 }
