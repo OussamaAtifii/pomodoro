@@ -1,4 +1,5 @@
 import { computed } from '@angular/core';
+import { Phase, PomodoroState } from '@customTypes/store.types';
 import {
   patchState,
   signalStore,
@@ -6,20 +7,14 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
+import { getNextPhase, getPhaseTimeLeft } from '@utils/store-helpers';
 import { formatTime } from '@utils/time-helpers';
-
-type Phase = 'work' | 'shortBreak' | 'longBreak';
-
-type PomodoroState = {
-  timeLeft: number;
-  isRunning: boolean;
-  phase: Phase;
-};
 
 const initialState: PomodoroState = {
   timeLeft: 25 * 60,
   isRunning: false,
   phase: 'work',
+  sessionsCompleted: 0,
 };
 
 export const PomodoroStore = signalStore(
@@ -66,6 +61,20 @@ export const PomodoroStore = signalStore(
         isRunning: false,
         timeLeft: 25 * 60,
       }));
+    },
+
+    changePhase() {
+      patchState(store, (state) => {
+        const { phase, sessionsCompleted } = getNextPhase(state);
+
+        return {
+          ...state,
+          timeLeft: getPhaseTimeLeft(phase),
+          isRunning: false,
+          phase,
+          sessionsCompleted,
+        };
+      });
     },
   })),
 );
