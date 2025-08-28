@@ -59,7 +59,7 @@ export const PomodoroStore = signalStore(
       patchState(store, (state) => ({
         ...state,
         isRunning: false,
-        timeLeft: 25 * 60,
+        timeLeft: getPhaseTimeLeft(state.phase),
       }));
     },
 
