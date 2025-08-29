@@ -6,7 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { PomodoroStore } from '@store/pomodoro-store';
-import { getPhaseTimeLeft } from '@utils/store-helpers';
+import { getPhaseColor, getPhaseTimeLeft } from '@utils/store-helpers';
 
 @Component({
   selector: 'app-timer',
@@ -27,5 +27,9 @@ export class TimerComponent {
     const timeLeft = this.store.timeLeft();
     const fraction = timeLeft / getPhaseTimeLeft(this.store.phase());
     return this.circumference() * (1 - fraction);
+  });
+
+  phaseColor = computed(() => {
+    return getPhaseColor(this.store.phase());
   });
 }

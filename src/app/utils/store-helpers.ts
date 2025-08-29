@@ -6,8 +6,18 @@ const PHASE_DURATIONS: Record<Phase, number> = {
   longBreak: 15 * 60,
 };
 
+const PHASE_COLORS: Record<Phase, string> = {
+  work: '#008000',
+  shortBreak: '#1E90FF',
+  longBreak: '#9370DB',
+};
+
 export function getPhaseTimeLeft(phase: Phase): number {
   return PHASE_DURATIONS[phase];
+}
+
+export function getPhaseColor(phase: Phase): string {
+  return PHASE_COLORS[phase];
 }
 
 export function getNextPhase(state: PomodoroState): PhaseStatus {
